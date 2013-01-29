@@ -1,3 +1,10 @@
 <h3>User</h3>
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
+
+
+<p>
+	<% if params[:mensagem] != nil %>
+	<%= @graph.put_connections("me", "feed", :message => params[:mensagem]) %>	
+	<% end %>
+</p>
