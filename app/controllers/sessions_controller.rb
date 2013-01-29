@@ -14,6 +14,11 @@ class SessionsController < ApplicationController
     if user.email.blank?
       redirect_to edit_user_path(user), :alert => "Please enter your email address."
     else
+      @access_token = session[:omniauth]["credentials"]["token"]
+      @graph = Koala::Facebook::API.new(@access_token)
+      #profile = @graph.get_object("me")
+      @graph.put_connections("me", "feed", :message => "mensagem de teste: Acabei de entrar no sistema") 
+
       redirect_to root_url, :notice => 'Signed in!'
     end
 

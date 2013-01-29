@@ -21,12 +21,7 @@ class UsersController < ApplicationController
 
 
 def show
-  @access_token = session[:omniauth]["credentials"]["token"]
   @user = User.find(params[:id])
-  @graph = Koala::Facebook::API.new(@access_token)
-  profile = @graph.get_object("me")
-  friends = @graph.get_connections("me", "friends")
-  
   
   end
 
